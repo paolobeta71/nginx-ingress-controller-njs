@@ -5,6 +5,6 @@ This repository is based on [Fabrizio Fiorucci's repository for NGINX-AuthN-Auth
 The solution requires a valid NGINX Plus Ingress Controller license and is not intended to work using the OSS version.
 To pull the NGINX Plus Ingress Controller image please consider the following article: https://docs.nginx.com/nginx-ingress-controller/installation/pulling-ingress-controller-image/
 
-
+The solution is meant for deploying NIC on a specific namespace/project, where also the backend-db will run. 
 
 
