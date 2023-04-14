@@ -54,6 +54,10 @@ oc apply -f 0.backend-db.yaml -n project01
 ### Deploy the configmap to apply the specific nginx config
 a new nginx configuration file is mounted using configmap
 ```
-oc apply -f 1.configmap.inail-conf.yaml -n project01
+oc apply -f 1.configmap-conf.yaml -n project01
 ```
-
+### Deploy the configmap to apply the njs script
+the njs script is mounted using this configmap
+```
+oc apply -f 2.configmap-js.yaml -n project01
+```
