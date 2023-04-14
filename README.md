@@ -20,4 +20,8 @@ cd backend-db
 docker build --no-cache -t YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.0 .
 docker push YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.0
 ```
+### Deploy the Namespace and Service Account
+```
+oc apply -f ns-and-sa.yaml
+```
 
