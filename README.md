@@ -46,3 +46,7 @@ oc apply -f nginx-config.yaml -n project01
 ```
 oc apply -f ingress-class.yaml -n project01
 ```
+###  Deploy the backend-db App, Service and Ingress
+```
+oc apply -f 0.backend-db.yaml -n project01
+```
