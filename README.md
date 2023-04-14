@@ -43,6 +43,7 @@ oc apply -f default-server-secret.yaml -n project01
 oc apply -f nginx-config.yaml -n project01
 ```
 ### Deploy the specific Ingress Class
+be aware, the Ingress Class name is referenced in the 0.backend-db.yaml file
 ```
 oc apply -f ingress-class.yaml -n project01
 ```
@@ -50,3 +51,9 @@ oc apply -f ingress-class.yaml -n project01
 ```
 oc apply -f 0.backend-db.yaml -n project01
 ```
+### Deploy the configmap to apply the specific nginx config
+a new nginx configuration file is mounted using configmap
+```
+oc apply -f 1.configmap.inail-conf.yaml -n project01
+```
+
