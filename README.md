@@ -30,7 +30,11 @@ oc apply -f ns-and-sa.yaml
 oc adm policy add-scc-to-user privileged  -z nginx-ingress -n project01
 ```
 ### Deploy cluster role and cluster role binding
+row 159 is referencing the name of the ns (change with the name of your ns)
 ```
 oc apply -f rbac.yaml
 ```
- 
+### Deploy Optional Default Server Secret
+```
+oc apply -f default-server-secret.yaml -n project01
+```
