@@ -21,7 +21,15 @@ docker build --no-cache -t YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.
 docker push YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.0
 ```
 ### Deploy the Namespace and Service Account
+In my example I'm using a ns called project01
 ```
 oc apply -f ns-and-sa.yaml
 ```
-
+### Deploy the SCC to apply right privileges to the ServiceAccount
+```
+oc adm policy add-scc-to-user privileged  -z nginx-ingress -n project01
+```
+### Deploy cluster role and cluster role binding
+```
+oc apply -f rbac.yaml
+```
