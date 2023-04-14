@@ -43,22 +43,22 @@ oc apply -f default-server-secret.yaml -n project01
 oc apply -f nginx-config.yaml -n project01
 ```
 ### Deploy the specific Ingress Class
-be aware, the Ingress Class name is referenced in the 0.backend-db.yaml and 3.nginx-plus-ingress.yaml files
+--> be aware, the Ingress Class name is referenced in the 0.backend-db.yaml and 3.nginx-plus-ingress.yaml files
 ```
 oc apply -f ingress-class.yaml -n project01
 ```
 ###  Deploy the backend-db App, Service and Ingress
-change "YOUR_PRIVATE_REGISTRY" with the address of your private registry
+--> change "YOUR_PRIVATE_REGISTRY" with the address of your private registry
 ```
 oc apply -f 0.backend-db.yaml -n project01
 ```
 ### Deploy the configmap to apply the specific nginx config
-a new nginx configuration file is mounted using configmap
+--> a new nginx configuration file is mounted using configmap
 ```
 oc apply -f 1.configmap-conf.yaml -n project01
 ```
 ### Deploy the configmap to apply the njs script
-the njs script is mounted using this configmap
+--> the njs script is mounted using this configmap
 ```
 oc apply -f 2.configmap-js.yaml -n project01
 ```
