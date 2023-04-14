@@ -61,3 +61,7 @@ the njs script is mounted using this configmap
 ```
 oc apply -f 2.configmap-js.yaml -n project01
 ```
+### Deploy the NGINX ingress pod
+```
+oc apply -f 3.nginx-plus-ingress.yaml -n project01
+```
