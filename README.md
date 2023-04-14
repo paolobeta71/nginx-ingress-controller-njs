@@ -43,7 +43,7 @@ oc apply -f default-server-secret.yaml -n project01
 oc apply -f nginx-config.yaml -n project01
 ```
 ### Deploy the specific Ingress Class
-be aware, the Ingress Class name is referenced in the 0.backend-db.yaml file
+be aware, the Ingress Class name is referenced in the 0.backend-db.yaml and 3.nginx-plus-ingress.yaml files
 ```
 oc apply -f ingress-class.yaml -n project01
 ```
@@ -62,6 +62,7 @@ the njs script is mounted using this configmap
 oc apply -f 2.configmap-js.yaml -n project01
 ```
 ### Deploy the NGINX ingress pod
+check, the two files api.conf and njs.js are mounted using the relative configmaps in the /etc/nginx/conf.d path
 ```
 oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
