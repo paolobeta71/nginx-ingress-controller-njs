@@ -38,3 +38,7 @@ oc apply -f rbac.yaml
 ```
 oc apply -f default-server-secret.yaml -n project01
 ```
+### Deploying NGINX Config Map
+```
+oc apply -f nginx-config.yaml -n project01
+```
