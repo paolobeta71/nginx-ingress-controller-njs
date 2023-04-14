@@ -14,9 +14,10 @@ The solution is meant for deploying NIC on a specific namespace/project, where a
 - The backend-db image available from a private registry (to build it please see the instructions below). 
 
 ## Deploying the Repository
-Build the backend-db:
+### Build the backend-db:
 ```
 cd backend-db
 docker build --no-cache -t YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.0 .
 docker push YOUR_PRIVATE_REGISTRY/nginx-authn-authz-backend-db:1.0
 ```
+
