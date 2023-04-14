@@ -63,8 +63,8 @@ the njs script is mounted using this configmap
 oc apply -f 2.configmap-js.yaml -n project01
 ```
 ### Deploy the NGINX ingress pod
-check, the two files api.conf and njs.js are mounted using the relative configmaps in the /etc/nginx/conf.d path
-change "YOUR_PRIVATE_REGISTRY" with the address of your private registry 
+--> check, the two files api.conf and njs.js are mounted using the relative configmaps in the /etc/nginx/conf.d path.
+--> change "YOUR_PRIVATE_REGISTRY" with the address of your private registry 
 ```
 oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
