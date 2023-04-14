@@ -33,3 +33,4 @@ oc adm policy add-scc-to-user privileged  -z nginx-ingress -n project01
 ```
 oc apply -f rbac.yaml
 ```
+ 
