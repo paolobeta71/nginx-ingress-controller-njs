@@ -42,3 +42,7 @@ oc apply -f default-server-secret.yaml -n project01
 ```
 oc apply -f nginx-config.yaml -n project01
 ```
+### Deploy the specific Ingress Class
+```
+oc apply -f ingress-class.yaml -n project01
+```
