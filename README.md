@@ -9,6 +9,6 @@ To pull the NGINX Plus Ingress Controller image please consider the following ar
 The solution is meant for deploying NIC on a specific namespace/project, where also the backend-db will run. 
 
 ## Requirements
-An Openshift or Kubernetes cluster
-The NGINX Plus Ingress Controller Image available from a private registry. It can include also AppProtect.
-The backend-db image available from a private registry (to build it please see the instructions below)
+- An Openshift or Kubernetes cluster
+- The NGINX Plus Ingress Controller Image available from a private registry. It can include also AppProtect.
+- The backend-db image available from a private registry (to build it please see the instructions below)
