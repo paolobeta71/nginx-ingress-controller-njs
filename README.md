@@ -69,3 +69,7 @@ oc apply -f 2.configmap-js.yaml -n project01
 ```
 oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
+### Check all is up and running
+```
+kubectl get all -n project01
+```
