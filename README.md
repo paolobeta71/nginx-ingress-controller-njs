@@ -97,4 +97,29 @@ $ echo -n "fantasticjwt" | base64 | tr '+/' '-_' | tr -d '='
 ZmFudGFzdGljand0
 ```
 Cloning the repository you have access to the /jwt dir. Create the JWT token using:
-
+```
+$ ./jwtEncoder.sh > jwt.token
+$ cat jwt.token
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEiLCJpc3MiOiJCYXNoIEpXVCBHZW5lcmF0b3IiLCJpYXQiOjE2MjYyNTkxOTAsImV4cCI6MTYyNjI1OTE5MX0.eyJuYW1lIjoiSldUIG5hbWUgY2xhaW0iLCJzdWIiOiJKV1Qgc3ViIGNsYWltIiwiaXNzIjoiSldUIGlzcyBjbGFpbSIsInJvbGVzIjpbImd1ZXN0Il19.NbEhykETd6c2wHjU3HDOhypoOCpIGFxC1juZBWKUyO8
+```
+The decoded token is:
+```
+{
+  "header": {
+    "typ": "JWT",
+    "alg": "HS256",
+    "kid": "0001",
+    "iss": "Bash JWT Generator",
+    "iat": 1626259190,
+    "exp": 1626259191
+  },
+  "payload": {
+    "name": "JWT name claim",
+    "sub": "JWT sub claim",
+    "iss": "JWT iss claim",
+    "roles": [
+      "guest"
+    ]
+  }
+}
+```
