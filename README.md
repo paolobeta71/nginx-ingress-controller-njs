@@ -76,7 +76,7 @@ kubectl get all -n project01
 
 ## Test the deployment 
 [credits always to Fabrizio's repository](https://github.com/fabriziofiorucci/NGINX-AuthN-AuthZ)
-Please see also as a reference (https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/)
+Please see also as a reference (https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/).
 This repository's backend DB uses a JWT secret defined as:
 ```
 $ cd jwt
@@ -96,5 +96,5 @@ the k field is the generated symmetric key (base64url-encoded) based on a secret
 $ echo -n "fantasticjwt" | base64 | tr '+/' '-_' | tr -d '='
 ZmFudGFzdGljand0
 ```
-
+Cloning the repository you have access to the /jwt dir. Create the JWT token using:
 
