@@ -73,3 +73,28 @@ oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
 kubectl get all -n project01
 ```
+
+## Test the deployment 
+[credits always to Fabrizio's repository](https://github.com/fabriziofiorucci/NGINX-AuthN-AuthZ)
+Please see also as a reference (https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/)
+This repository's backend DB uses a JWT secret defined as:
+```
+$ cd jwt
+$ cat jwks.json
+{
+  "keys": [
+    {
+      "k":"ZmFudGFzdGljand0",
+      "kty":"oct",
+      "kid":"0001"
+    }
+  ]
+}
+```
+the k field is the generated symmetric key (base64url-encoded) based on a secret (fantasticjwt in the example). The secret can be generated with the following command:
+```
+$ echo -n "fantasticjwt" | base64 | tr '+/' '-_' | tr -d '='
+ZmFudGFzdGljand0
+```
+
+
