@@ -123,3 +123,83 @@ The decoded token is:
   }
 }
 ```
+### Backend DB Test
+Test the Backend DB fetching the JWT secret:
+```
+$ curl -s http://db.nginx-authn-authz.ff.lan/jwks.json | jq
+{
+  "keys": [
+    {
+      "k": "ZmFudGFzdGljand0",
+      "kid": "0001",
+      "kty": "oct"
+    }
+  ]
+}
+```
+Backend DB, fetching all keys:
+```
+$ curl -s http://db.nginx-authn-authz.ff.lan/backend/fetchallkeys | jq
+{
+  "rules": [
+    {
+      "enabled": "true",
+      "matchRules": {
+        "method": "GET",
+        "roles": "guest",
+        "xauthz": "api-v1.0"
+      },
+      "operation": {
+        "url": "http://numbersapi.com/random/year"
+      },
+      "ruleid": 1,
+      "uri": "v1.0/getRandomFact"
+    },
+    {
+      "enabled": "true",
+      "matchRules": {
+        "method": "GET",
+        "roles": "guest netops",
+        "xauthz": "api-v1.0"
+      },
+      "operation": {
+        "url": "https://api.ipify.org/?format=json"
+      },
+      "ruleid": 2,
+      "uri": "v1.0/getLocalIP"
+    },
+    {
+      "enabled": "true",
+      "matchRules": {
+        "method": "POST",
+        "roles": "devops",
+        "xauthz": "api-v2.0"
+      },
+      "operation": {
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "ruleid": 3,
+      "uri": "v2.0/testPost"
+    }
+  ]
+}
+```
+Backend DB, fetching a specific key:
+```
+$ curl -s http://db.nginx-authn-authz.ff.lan/backend/fetchkey/v1.0/getRandomFact | jq
+{
+  "rule": {
+    "enabled": "true",
+    "matchRules": {
+      "method": "GET",
+      "roles": "guest",
+      "xauthz": "api-v1.0"
+    },
+    "operation": {
+      "url": "http://numbersapi.com/random/year"
+    },
+    "ruleid": 1,
+    "uri": "v1.0/getRandomFact"
+  }
+}
+```
