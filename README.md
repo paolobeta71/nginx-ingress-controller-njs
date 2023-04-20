@@ -69,6 +69,10 @@ oc apply -f 2.configmap-js.yaml -n project01
 ```
 oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
+--> deploy your prefered service to expose the application (in my example I'm using a nodeport configuration)
+```
+oc apply -f 4.nodeport.yaml -n project02
+```
 ### Check all is up and running
 ```
 kubectl get all -n project01
