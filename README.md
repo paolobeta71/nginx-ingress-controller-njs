@@ -217,7 +217,7 @@ nginx-apigw-5b567bd46d-4dzlw   1/1     Running   0          30s
 ```
 Display NGINX Plus IC logs:
 ```
-kubectl logs -l app=nginx-apigw -n project01 -f
+kubectl logs -l app=nginx-ingress -n project01 -f
 ```
 Open another terminal and use:
 ```
