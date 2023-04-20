@@ -53,7 +53,7 @@ oc apply -f ingress-class.yaml -n project01
 oc apply -f 0.backend-db.yaml -n project01
 ```
 ### Deploy the configmap to apply the specific nginx config
---> a nginx configuration file is mounted using configmap
+--> nginx configuration file is mounted using configmap
 ```
 oc apply -f 1.configmap-conf.yaml -n project01
 ```
