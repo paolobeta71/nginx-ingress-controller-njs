@@ -71,7 +71,7 @@ oc apply -f 3.nginx-plus-ingress.yaml -n project01
 ```
 --> deploy your prefered service to expose the application (in my example I'm using a nodeport configuration)
 ```
-oc apply -f 4.nodeport.yaml -n project02
+oc apply -f 4.nodeport.yaml -n project01
 ```
 ### Check all is up and running
 ```
