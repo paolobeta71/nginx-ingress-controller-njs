@@ -225,7 +225,7 @@ $ cd jwt
 ```
 Test with valid HTTP method, no JWT token and no X-AuthZ header:
 ```
-$ curl -X GET -ki https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+$ curl -X GET -ki http://nginx-authn-authz.ff.lan:31081/v1.0/getRandomFact
 HTTP/1.1 401 Unauthorized
 Server: nginx/1.19.5
 Date: Wed, 14 Jul 2021 00:05:58 GMT
@@ -244,7 +244,7 @@ WWW-Authenticate: Bearer realm="authentication required"
 ```
 Test with valid JWT token, HTTP method and X-AuthZ header:
 ```
-$ curl -X GET -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+$ curl -X GET -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" http://nginx-authn-authz.ff.lan:31081/v1.0/getRandomFact
 HTTP/1.1 200 OK
 Server: nginx/1.19.5
 Date: Wed, 14 Jul 2021 10:46:42 GMT
@@ -265,7 +265,7 @@ Last-Modified: 1626259725
 ```
 Test with valid JWT token, HTTP method and invalid X-AuthZ header:
 ```
-$ curl -X GET -ki -H "X-AuthZ: invalid" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+$ curl -X GET -ki -H "X-AuthZ: invalid" -H "Authorization: Bearer `cat jwt.token`" http://nginx-authn-authz.ff.lan:31081/v1.0/getRandomFact
 HTTP/1.1 403 Forbidden
 Server: nginx/1.19.5
 Date: Wed, 14 Jul 2021 10:48:26 GMT
@@ -283,7 +283,7 @@ Connection: keep-alive
 ```
 Test with valid JWT token, X-AuthZ header and invalid HTTP method:
 ```
-$ curl -X POST -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+$ curl -X POST -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" http://nginx-authn-authz.ff.lan:31081/v1.0/getRandomFact
 HTTP/1.1 403 Forbidden
 Server: nginx/1.19.5
 Date: Wed, 14 Jul 2021 10:48:46 GMT
