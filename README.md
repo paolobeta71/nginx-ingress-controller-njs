@@ -203,3 +203,95 @@ $ curl -s http://db.nginx-authn-authz.ff.lan/backend/fetchkey/v1.0/getRandomFact
   }
 }
 ```
+### REST API Access test
+Display running pods in your specific ns:
+```
+$ kubectl get pods -n project01
+NAME                           READY   STATUS    RESTARTS   AGE
+backend-db-5449cd986d-s6wjc    1/1     Running   0          2m35s
+nginx-apigw-5b567bd46d-4dzlw   1/1     Running   0          30s
+```
+Display NGINX Plus IC logs:
+```
+kubectl logs -l app=nginx-apigw -n project01 -f
+```
+Open another terminal and use:
+```
+$ cd jwt
+```
+Test with valid HTTP method, no JWT token and no X-AuthZ header:
+```
+$ curl -X GET -ki https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+HTTP/1.1 401 Unauthorized
+Server: nginx/1.19.5
+Date: Wed, 14 Jul 2021 00:05:58 GMT
+Content-Type: text/html
+Content-Length: 180
+Connection: keep-alive
+WWW-Authenticate: Bearer realm="authentication required"
+
+<html>
+<head><title>401 Authorization Required</title></head>
+<body>
+<center><h1>401 Authorization Required</h1></center>
+<hr><center>nginx/1.19.10</center>
+</body>
+</html>
+```
+Test with valid JWT token, HTTP method and X-AuthZ header:
+```
+$ curl -X GET -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+HTTP/1.1 200 OK
+Server: nginx/1.19.5
+Date: Wed, 14 Jul 2021 10:46:42 GMT
+Content-Type: text/plain; charset=utf-8
+Content-Length: 134
+Connection: keep-alive
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+X-Numbers-API-Number: 1596
+X-Numbers-API-Type: year
+Pragma: no-cache
+Cache-Control: no-cache,no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+Expires: 0
+ETag: W/"86-LOZwbw2FmGZayZAhgGE9bscPWIk"
+Last-Modified: 1626259725
+
+1596 is the year that Sir John Norreys and Sir Geoffrey Fenton travel to Connaught to parley with the local Irish lords on June NaNth.
+```
+Test with valid JWT token, HTTP method and invalid X-AuthZ header:
+```
+$ curl -X GET -ki -H "X-AuthZ: invalid" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+HTTP/1.1 403 Forbidden
+Server: nginx/1.19.5
+Date: Wed, 14 Jul 2021 10:48:26 GMT
+Content-Type: text/html
+Content-Length: 154
+Connection: keep-alive
+
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.19.10</center>
+</body>
+</html>
+```
+Test with valid JWT token, X-AuthZ header and invalid HTTP method:
+```
+$ curl -X POST -ki -H "X-AuthZ: api-v1.0" -H "Authorization: Bearer `cat jwt.token`" https://nginx-authn-authz.ff.lan/v1.0/getRandomFact
+HTTP/1.1 403 Forbidden
+Server: nginx/1.19.5
+Date: Wed, 14 Jul 2021 10:48:46 GMT
+Content-Type: text/html
+Content-Length: 154
+Connection: keep-alive
+
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.19.10</center>
+</body>
+</html>
+```
