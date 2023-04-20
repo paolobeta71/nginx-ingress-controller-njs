@@ -10,7 +10,7 @@ data:
       zone upstream-db 64k;
 
       # Upstream DB REST API endpoint
-      server backend-db.svc.cluster.local:5000;
+      server backend-db.project01.svc.cluster.local:5000;
     }
 
     #proxy_cache_path /var/cache/nginx/jwk levels=1 keys_zone=jwk:1m max_size=10m;
